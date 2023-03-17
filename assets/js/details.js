@@ -11,9 +11,9 @@ window.onload = async () => {
   const productDetails = document.getElementById("product-details");
   try {
     const resp = await fetch(URL + id);
-    const productData = await resp.json();
+    const product = await resp.json();
 
-    const { _id, name, description, brand, imageUrl, price } = productData;
+    const { _id, name, description, brand, imageUrl, price } = product;
 
     const card = document.createElement("div");
     card.className = "card";
@@ -40,7 +40,7 @@ window.onload = async () => {
 
     cardBody.append(cardTitle, cardText, cardLink);
     card.append(cardImage, cardBody);
-    column.append(card);
+    productDetails.append(card);
   } catch (err) {
     console.log(err);
   }

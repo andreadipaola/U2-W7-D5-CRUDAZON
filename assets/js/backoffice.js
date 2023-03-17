@@ -16,8 +16,8 @@ window.onload = async () => {
 
     try {
       const res = await fetch(URL);
-      const productData = await res.json();
-      const { name, description, brand, imageUrl, price } = productData;
+      const product = await res.json();
+      const { name, description, brand, imageUrl, price } = product;
 
       document.getElementById("product-name").value = name;
       document.getElementById("product-description").value = description;
