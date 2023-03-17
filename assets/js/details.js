@@ -13,7 +13,12 @@ window.onload = async () => {
     const resp = await fetch(URL + id);
     const product = await resp.json();
 
-    const { _id, name, description, brand, imageUrl, price } = product;
+    const id = product._id;
+    const name = product.name;
+    const description = product.description;
+    const brand = product.brand;
+    const imageUrl = product.imageUrl;
+    const price = product.price;
 
     const card = document.createElement("div");
     card.className = "card";
