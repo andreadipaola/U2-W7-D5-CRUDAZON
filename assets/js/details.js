@@ -15,7 +15,32 @@ window.onload = async () => {
 
     const { _id, name, description, brand, imageUrl, price } = productData;
 
-    const document.createElement("div");
+    const card = document.createElement("div");
+    card.className = "card";
+
+    const cardImage = document.createElement("img");
+    cardImage.className = "card-img-top";
+    cardImage.setAttribute("src", product.imageUrl);
+
+    const cardBody = document.createElement("div");
+    cardBody.className = "card-body";
+
+    const cardTitle = document.createElement("h5");
+    cardTitle.className = "card-title";
+    cardTitle.innerText = product.name;
+
+    const cardText = document.createElement("p");
+    cardText.className = "card-text";
+    cardText.innerText = product.description;
+
+    const cardLink = document.createElement("a");
+    cardLink.className = "btn btn-primary";
+    cardImage.setAttribute("href", `details.html?id=${product._id}`);
+    cardLink.innerText = "Visualizza Prodotto";
+
+    cardBody.append(cardTitle, cardText, cardLink);
+    card.append(cardImage, cardBody);
+    column.append(card);
   } catch (err) {
     console.log(err);
   }
