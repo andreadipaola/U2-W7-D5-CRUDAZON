@@ -43,7 +43,7 @@ const loadProducts = async () => {
 
       const cardLink = document.createElement("a");
       cardLink.className = "btn btn-primary";
-      cardImage.setAttribute("href", `details.html?id=${product._id}`);
+      cardLink.href = "details.html?id=" + product._id;
       cardLink.innerText = "Visualizza Prodotto";
 
       cardBody.append(cardTitle, cardText, cardLink);

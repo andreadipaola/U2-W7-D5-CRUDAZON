@@ -5,7 +5,6 @@ const authKey =
 const params = new URLSearchParams(window.location.search);
 
 const id = params.get("id");
-console.log("SELECTED ID: ", id);
 
 window.onload = async () => {
   const productDetails = document.getElementById("product-details");
@@ -40,7 +39,7 @@ window.onload = async () => {
 
     const cardLink = document.createElement("a");
     cardLink.className = "btn btn-primary";
-    cardImage.setAttribute("href", `details.html?id=${product._id}`);
+    cardImage.setAttribute("href", `details.html?id=${product.id}`);
     cardLink.innerText = "Visualizza Prodotto";
 
     cardBody.append(cardTitle, cardText, cardLink);
