@@ -18,7 +18,7 @@
       <!-- NAVBAR START -->
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container">
-          <a class="navbar-brand" href="#">LOGO</a>
+          <a class="navbar-brand" href="index.html">LOGO</a>
           <button
             class="navbar-toggler"
             type="button"
@@ -38,7 +38,7 @@
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="backoffice.html">Backoffice</a>
+                <a class="nav-link">Backoffice</a>
               </li>
             </ul>
             <form class="d-flex" role="search">
@@ -56,31 +56,68 @@
         </div>
       </nav>
       <!-- NAVBAR END -->
-
-      <!-- HERO SECTION START -->
-      <section class="hero bg-body-secondary">
-        <div class="container">
-          <h1>Title</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque quas
-            sit, inventore tempore suscipit earum nemo at et debitis reiciendis,
-            quod veritatis ratione! Accusamus vel aut nam earum? Rem, possimus.
-          </p>
-        </div>
-      </section>
-      <!-- HERO SECTION END -->
     </header>
     <!-- HEADER END -->
 
     <!-- MAIN START -->
     <main>
-      <!-- PRODUCTS SECTION START -->
-      <div class="container">
-        <div id="row" class="row gy-3"></div>
-      </div>
-      <!-- PRODUCTS SECTION START -->
-      <!-- FOOTER START -->
+      <!-- EDIT SECTION START -->
+      <section class="edit-section">
+        <div class="container">
+          <h2>Crea nuovo prodotto</h2>
+          <form onsubmit="createProduct(event)">
+            <div class="mb-3">
+              <label for="product-name" class="form-label"
+                >Nome del Prodotto</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="product-name"
+                aria-describedby="emailHelp"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="product-description" class="form-label"
+                >Descrizione del prodotto</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="product-description"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="product-brand" class="form-label">Marca</label>
+              <input type="text" class="form-control" id="product-brand" />
+            </div>
+            <div class="mb-3">
+              <label for="product-image" class="form-label">Immagini</label>
+              <input type="text" class="form-control" id="product-image" />
+            </div>
+            <div class="mb-3">
+              <label for="product-price" class="form-label">Prezzo</label>
+              <input type="text" class="form-control" id="product-price" />
+            </div>
+            <div class="d-flex justify-content-between">
+              <button id="submit-btn" type="submit" class="btn btn-success">
+                Salva Oggetto
+              </button>
+              <button
+                id="delete-btn"
+                type="button"
+                class="btn btn-danger d-none"
+                onclick="deleteProduct()"
+              >
+                Cancella Prodotto
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+      <!-- EDIT SECTION START -->
 
+      <!-- FOOTER START -->
       <div class="footer">
         <div class="container">
           <p>&copy; 2023 Andrea Di Paola</p>
@@ -94,6 +131,6 @@
       integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
       crossorigin="anonymous"
     ></script>
-    <script src="assets/js/index.js"></script>
+    <script src="assets/js/backoffice.js"></script>
   </body>
 </html>
