@@ -1,18 +1,23 @@
 const URL = "https://striveschool-api.herokuapp.com/api/product/";
-const authKey =
+const AUTH_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDE0MjBjMWY4MWI0MjAwMTM5YjI3YzUiLCJpYXQiOjE2NzkwNDA3MDUsImV4cCI6MTY4MDI1MDMwNX0._BPCWhG94dOIx4zEgf7S0GmYpDfEV82NWOd7SW4mX6s";
 
 const params = new URLSearchParams(window.location.search);
 
-const id = params.get("id");
+const id = params.get("_id");
+console.log("id selezionato: ", id);
 
 window.onload = async () => {
   const productDetails = document.getElementById("product-details");
   try {
-    const resp = await fetch(URL + id);
+    const resp = await fetch(URL + id, {
+      headers: {
+        Authorization: `Bearer ${AUTH_KEY}`
+      }
+    });
     const product = await resp.json();
-
-    const id = product._id;
+    console.log(product);
+    const _id = product._id;
     const name = product.name;
     const description = product.description;
     const brand = product.brand;
@@ -39,7 +44,7 @@ window.onload = async () => {
 
     const cardLink = document.createElement("a");
     cardLink.className = "btn btn-primary";
-    cardImage.setAttribute("href", `details.html?id=${product.id}`);
+    cardImage.setAttribute("href", `details.html?id=${product._id}`);
     cardLink.innerText = "Visualizza Prodotto";
 
     cardBody.append(cardTitle, cardText, cardLink);

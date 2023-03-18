@@ -7,7 +7,7 @@ const URL = id
 
 const method = id ? "PUT" : "POST";
 
-const authKey =
+const AUTH_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDE0MjBjMWY4MWI0MjAwMTM5YjI3YzUiLCJpYXQiOjE2NzkwNDA3MDUsImV4cCI6MTY4MDI1MDMwNX0._BPCWhG94dOIx4zEgf7S0GmYpDfEV82NWOd7SW4mX6s";
 
 window.onload = async () => {
@@ -51,7 +51,7 @@ const createProduct = async (event) => {
       method: method,
       body: JSON.stringify(product),
       headers: {
-        Authorization: `Bearer ${authKey}`,
+        Authorization: `Bearer ${AUTH_KEY}`,
         "Content-Type": "application/json"
       }
     });

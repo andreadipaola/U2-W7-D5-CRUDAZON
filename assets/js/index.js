@@ -1,22 +1,26 @@
 const URL = "https://striveschool-api.herokuapp.com/api/product/";
-const authKey =
+const AUTH_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDE0MjBjMWY4MWI0MjAwMTM5YjI3YzUiLCJpYXQiOjE2NzkwNDA3MDUsImV4cCI6MTY4MDI1MDMwNX0._BPCWhG94dOIx4zEgf7S0GmYpDfEV82NWOd7SW4mX6s";
+const HEADERS = { headers: { Authorization: `Bearer ${AUTH_KEY}` } };
 
+// QUESTA FUNZIONE MI PERMETTE
 const loadProducts = async () => {
+  // INCLUDENDO IL MIO CODICE NEL TRY POSSO SUCCESSIVAMENTE GESTIRE EVENTUALI ERRORI GENERATI NEL CATCH
   try {
-    const res = await fetch(URL, {
-      headers: {
-        Authorization: `Bearer ${authKey}`
-      }
-    });
-    console.log("res", res);
+    // ATTENDO CHE ARRIVI UN OGGETTO DI TIPO RESPONSE DOPO UNA CHIAMATA AD UN API
+    const res = await fetch(URL, HEADERS);
+    console.log("responseObject: ", res);
 
+    // GESTISCO DEI CODICI DI ERRORE SPECIFICI ATTRAVERSO IL THROW CHE VERRANNO POI CATTURATI DAL CATCH
     if (res.status === 400)
       throw new Error("Hai scrtitto male qualcosa! Controlla la tua richiesta");
     if (res.status === 404) throw new Error("Quello che cerchi non è qui!");
     if (!res.ok) throw new Error("Non sappiamo cosa sia ma c'è un problema!");
 
+    // TRASFORMO IL MIO OGGETTO RESPONSE IN FORMATO JSON IN MODO DA POTERLO UTILIZZARE A MIO PIACIMENTO
     const products = await res.json();
+
+    // CREO DINAMICAMENTE LE CARDS CHE ANDRANNO A CONTENERE I MIEI PRODOTTI
     const row = document.querySelector("#row");
     console.log(row);
     products.forEach((product) => {
@@ -52,11 +56,13 @@ const loadProducts = async () => {
       row.append(column);
     });
     console.log(products);
+    // QUI (CATCH) GESTISCO GLI EVENTUALI ERRORI GENERATI NEL TRY
   } catch (err) {
     console.log(err.message);
   }
 };
 
+// AL CARICAMENTO DELLA PAGINA RICHIAMO LA FUNZIONE DICHIARATA IN PRECEDENZA
 window.onload = () => {
   loadProducts();
 };
