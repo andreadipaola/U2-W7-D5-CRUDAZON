@@ -155,7 +155,7 @@
                     type="button"
                     class="btn btn-danger d-none"
                     data-bs-toggle="modal"
-                    data-bs-target="#modal-confirm"
+                    data-bs-target="#delete-modal-confirm"
                   >
                     Cancella Prodotto
                   </button>
@@ -171,11 +171,11 @@
     <!-- EDIT MODAL START -->
     <div
       class="modal fade"
-      id="modal-confirm"
+      id="edit-modal-confirm"
       data-bs-backdrop="static"
       data-bs-keyboard="false"
       tabindex="-1"
-      aria-labelledby="modal-confirm"
+      aria-labelledby="edit-modal-confirm"
       aria-hidden="true"
     >
       <div class="modal-dialog">
@@ -201,7 +201,7 @@
             <button
               type="button"
               class="btn btn-danger"
-              onclick="deleteProduct()"
+              onclick="createProduct()"
             >
               Conferma
             </button>
@@ -214,11 +214,11 @@
     <!-- DELETE MODAL START -->
     <div
       class="modal fade"
-      id="modal-confirm"
+      id="delete-modal-confirm"
       data-bs-backdrop="static"
       data-bs-keyboard="false"
       tabindex="-1"
-      aria-labelledby="modal-confirm"
+      aria-labelledby="delete-modal-confirm"
       aria-hidden="true"
     >
       <div class="modal-dialog">
