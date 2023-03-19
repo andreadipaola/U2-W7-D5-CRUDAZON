@@ -7,9 +7,9 @@ const HEADERS = { headers: { Authorization: `Bearer ${AUTH_KEY}` } };
 const loadProducts = async () => {
   // INCLUDENDO IL MIO CODICE NEL TRY POSSO SUCCESSIVAMENTE GESTIRE EVENTUALI ERRORI GENERATI NEL CATCH
   try {
-    // ATTENDO CHE ARRIVI UN OGGETTO DI TIPO RESPONSE DOPO UNA CHIAMATA AD UN API
+    // ATTENDO CHE ARRIVI UN OGGETTO DI TIPO resONSE DOPO UNA CHIAMATA AD UN API
     const res = await fetch(URL, HEADERS);
-    console.log("responseObject: ", res);
+    console.log("resonseObject: ", res);
 
     // GESTISCO DEI CODICI DI ERRORE SPECIFICI ATTRAVERSO IL THROW CHE VERRANNO POI CATTURATI DAL CATCH
     if (res.status === 400)
@@ -17,7 +17,7 @@ const loadProducts = async () => {
     if (res.status === 404) throw new Error("Quello che cerchi non è qui!");
     if (!res.ok) throw new Error("Non sappiamo cosa sia ma c'è un problema!");
 
-    // TRASFORMO IL MIO OGGETTO RESPONSE IN FORMATO JSON IN MODO DA POTERLO UTILIZZARE A MIO PIACIMENTO
+    // TRASFORMO IL MIO OGGETTO resONSE IN FORMATO JSON IN MODO DA POTERLO UTILIZZARE A MIO PIACIMENTO
     const products = await res.json();
 
     // CREO DINAMICAMENTE LE CARDS CHE ANDRANNO A CONTENERE I MIEI PRODOTTI
@@ -37,20 +37,34 @@ const loadProducts = async () => {
       const cardBody = document.createElement("div");
       cardBody.className = "card-body";
 
+      const cardBrand = document.createElement("p");
+      cardBrand.className = "card-brand";
+      cardBrand.innerText = product.brand;
+
       const cardTitle = document.createElement("h5");
       cardTitle.className = "card-title";
       cardTitle.innerText = product.name;
 
-      const cardText = document.createElement("p");
-      cardText.className = "card-text";
-      cardText.innerText = product.description;
+      const cardDescription = document.createElement("p");
+      cardDescription.className = "card-description";
+      cardDescription.innerText = product.description;
+
+      const cardPrice = document.createElement("p");
+      cardPrice.className = "card-price";
+      cardPrice.innerText = `${product.price} €`;
 
       const cardLink = document.createElement("a");
       cardLink.className = "btn btn-primary";
       cardLink.href = "details.html?id=" + product._id;
-      cardLink.innerText = "Visualizza Prodotto";
+      cardLink.innerText = "Scopri di più";
 
-      cardBody.append(cardTitle, cardText, cardLink);
+      cardBody.append(
+        cardBrand,
+        cardTitle,
+        cardDescription,
+        cardPrice,
+        cardLink
+      );
       card.append(cardImage, cardBody);
       column.append(card);
       row.append(column);

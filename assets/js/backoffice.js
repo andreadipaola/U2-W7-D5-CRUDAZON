@@ -10,12 +10,14 @@ const method = id ? "PUT" : "POST";
 const AUTH_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDE0MjBjMWY4MWI0MjAwMTM5YjI3YzUiLCJpYXQiOjE2NzkwNDA3MDUsImV4cCI6MTY4MDI1MDMwNX0._BPCWhG94dOIx4zEgf7S0GmYpDfEV82NWOd7SW4mX6s";
 
+const HEADERS = { headers: { Authorization: `Bearer ${AUTH_KEY}` } };
 window.onload = async () => {
   if (id) {
+    //  UI POSSO MODIFICARE IL TITOLO (H1) SE ARRIVO CON UN ID
     document.getElementById("delete-btn").classList.remove("d-none");
 
     try {
-      const res = await fetch(URL);
+      const res = await fetch(URL, HEADERS);
       const product = await res.json();
       const { name, description, brand, imageUrl, price } = product;
 
@@ -28,13 +30,14 @@ window.onload = async () => {
       const submitBtn = document.getElementById("submit-btn");
       submitBtn.classList.remove("btn-primary");
       submitBtn.classList.add("btn-warning");
-      submitBtn.innerText = "Modifica";
+      submitBtn.innerText = "Modifica Prodotto";
     } catch (err) {
       console.log(err);
     }
   }
 };
 
+// INIZIO PARTE RELATIVA ALLA CREAZIONE DI UN NUOVO PRODOTTO
 const createProduct = async (event) => {
   event.preventDefault();
 
@@ -45,6 +48,8 @@ const createProduct = async (event) => {
     imageUrl: document.getElementById("product-image").value,
     price: document.getElementById("product-price").value
   };
+
+  console.log(product);
 
   try {
     const res = await fetch(URL, {
@@ -57,14 +62,14 @@ const createProduct = async (event) => {
     });
 
     if (res.ok) {
-      const createdObject = await res.json();
+      const createdProduct = await res.json();
       if (id) {
         console.log(
-          "Pronotto # " + createdObject._id + ", modificato con successo"
+          "Pronotto # " + createdProduct._id + " modificato con successo"
         );
       } else {
         console.log(
-          "Prodotto # " + createdObject._id + ", creato con successo"
+          "Prodotto # " + createdProduct._id + " creato con successo"
         );
       }
     } else {
@@ -73,17 +78,19 @@ const createProduct = async (event) => {
   } catch (err) {
     console.log(err);
   }
+  // FINE SEZIONE DEDICATA ALLA CREAZIONE DI UN PRODOTTO
+};
+const deleteProduct = async () => {
+  try {
+    const res = await fetch(URL, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${AUTH_KEY}` }
+    });
+    const deletedProduct = await res.json();
 
-  const deleteProduct = async () => {
-    try {
-      console.log("DELETE");
-      const res = await fetch(URL, { method: "DELETE" });
-      const deletedObj = await res.json();
-
-      console.log("Hai eliminato il prodotto " + deletedObj.name);
-      window.location.assign("./index.html");
-    } catch (err) {
-      console.log(err);
-    }
-  };
+    console.log("Hai eliminato il prodotto " + deletedProduct.name);
+    window.location.assign("index.html");
+  } catch (err) {
+    console.log(err);
+  }
 };

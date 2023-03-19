@@ -1,59 +1,101 @@
 const URL = "https://striveschool-api.herokuapp.com/api/product/";
 const AUTH_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDE0MjBjMWY4MWI0MjAwMTM5YjI3YzUiLCJpYXQiOjE2NzkwNDA3MDUsImV4cCI6MTY4MDI1MDMwNX0._BPCWhG94dOIx4zEgf7S0GmYpDfEV82NWOd7SW4mX6s";
+// OTTENGO L'OGGETTO PARAMS CHE CONTIENE LA STRINGA VISIBILE NELLA BARRA DEGLI INDIRIZI DI QUESTA PAGINA. TALE STRINGA È STATA CREATA NELLA PAGINA INDEX.HTML E CONTIENE ANCHE L'ID DEL PRODOTTO SUL QUALE ABBIAMO CLICCATO PER ARRIVARE SU QUESTA PAGINA SPECIFICA
+const id = new URLSearchParams(window.location.search).get("id");
+console.log(id);
 
-const params = new URLSearchParams(window.location.search);
+// Questo solo se volessi accedere ad altre risorse da utilizzare in una fetch successiva
+// ovviamente dovrei comporre la stringa nella pagina index.html che comprenda anche questo id in modo da recuperarlo in un secondo momento
+// const pexelsId = URLSearchParams(window.location.search).get("PexelsId");
 
-const id = params.get("_id");
-console.log("id selezionato: ", id);
-
-window.onload = async () => {
-  const productDetails = document.getElementById("product-details");
+const fetchProducts = async () => {
+  const productDetailsContainer = document.getElementById(
+    "product-details-container"
+  );
   try {
-    const resp = await fetch(URL + id, {
+    const res = await fetch(URL + id, {
       headers: {
         Authorization: `Bearer ${AUTH_KEY}`
       }
     });
-    const product = await resp.json();
+    const product = await res.json();
     console.log(product);
-    const _id = product._id;
-    const name = product.name;
-    const description = product.description;
-    const brand = product.brand;
-    const imageUrl = product.imageUrl;
-    const price = product.price;
 
-    const card = document.createElement("div");
-    card.className = "card";
+    const {
+      brand,
+      createdAt,
+      description,
+      imageUrl,
+      name,
+      price,
+      updatedAt,
+      _id
+    } = product;
 
-    const cardImage = document.createElement("img");
-    cardImage.className = "card-img-top";
-    cardImage.setAttribute("src", product.imageUrl);
+    const productImage = document.createElement("img");
+    productImage.className = "image-fluid";
+    productImage.src = imageUrl;
 
-    const cardBody = document.createElement("div");
-    cardBody.className = "card-body";
+    const productName = document.createElement("h1");
+    productName.className = "fw-bold";
+    productName.innerText = name;
 
-    const cardTitle = document.createElement("h5");
-    cardTitle.className = "card-title";
-    cardTitle.innerText = product.name;
+    const productDescription = document.createElement("p");
+    productDescription.innerText = description;
 
-    const cardText = document.createElement("p");
-    cardText.className = "card-text";
-    cardText.innerText = product.description;
+    const productBrand = document.createElement("p");
+    productBrand.innerText = brand;
 
-    const cardLink = document.createElement("a");
-    cardLink.className = "btn btn-primary";
-    cardImage.setAttribute("href", `details.html?id=${product._id}`);
-    cardLink.innerText = "Visualizza Prodotto";
+    const productPrice = document.createElement("p");
+    productPrice.innerText = price;
 
-    cardBody.append(cardTitle, cardText, cardLink);
-    card.append(cardImage, cardBody);
-    productDetails.append(card);
+    const serverDetails = document.createElement("h6");
+    serverDetails.className = "bg-light py-3 ps-2";
+    serverDetails.innerText = "Server details";
+
+    const serverDetailsList = document.createElement("ul");
+    serverDetailsList.className = "list-group list-group-flush";
+
+    const firstServerDetail = document.createElement("li");
+    firstServerDetail.className = "list-group-item ps-2";
+    firstServerDetail.innerHTML = `<strong>id:</strong> ${_id}`;
+
+    const secondServerDetail = document.createElement("li");
+    secondServerDetail.className = "list-group-item ps-2";
+    secondServerDetail.innerHTML = `<strong>createdAt:</strong> ${createdAt}</li>`;
+
+    const thirdServerDetail = document.createElement("li");
+    thirdServerDetail.className = "list-group-item ps-2";
+    thirdServerDetail.innerHTML = `<strong>updatedAt:</strong> ${updatedAt}`;
+
+    const editBtn = document.createElement("button");
+    editBtn.className = "btn btn-warning";
+    editBtn.innerText = "Modifica prodotto";
+    editBtn.onclick = goToEdit;
+
+    serverDetailsList.append(
+      firstServerDetail,
+      secondServerDetail,
+      thirdServerDetail
+    );
+
+    productDetailsContainer.append(
+      productImage,
+      productName,
+      productDescription,
+      productBrand,
+      productPrice,
+      serverDetails,
+      serverDetailsList,
+      editBtn
+    );
   } catch (err) {
     console.log(err);
   }
 };
+
+window.onload = fetchProducts;
 
 const goToEdit = () => {
   window.location.assign("backoffice.html?id=" + id);

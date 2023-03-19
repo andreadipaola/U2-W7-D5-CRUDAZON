@@ -38,20 +38,9 @@
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link">Backoffice</a>
+                <a class="nav-link" href="backoffice.html">Backoffice</a>
               </li>
             </ul>
-            <form class="d-flex" role="search">
-              <input
-                class="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button class="btn btn-outline-success" type="submit">
-                Search
-              </button>
-            </form>
           </div>
         </div>
       </nav>
@@ -61,69 +50,119 @@
 
     <!-- MAIN START -->
     <main>
-      <!-- EDIT SECTION START -->
+      <!-- CREATE/EDIT SECTION START -->
       <section class="edit-section">
         <div class="container">
-          <h2>Crea nuovo prodotto</h2>
-          <form onsubmit="createProduct(event)">
-            <div class="mb-3">
-              <label for="product-name" class="form-label"
-                >Nome del Prodotto</label
+          <div class="row justify-content-center">
+            <div class="col-10">
+              <h2>Backoffice</h2>
+              <h5>- Crea nuovo prodotto</h5>
+              <form
+                class="needs-validation"
+                novalidate
+                onsubmit="createProduct(event)"
               >
-              <input
-                type="text"
-                class="form-control"
-                id="product-name"
-                aria-describedby="emailHelp"
-              />
+                <div class="mb-3">
+                  <label for="product-name" class="form-label"
+                    >Nome del Prodotto</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="product-name"
+                    aria-describedby="product-name"
+                    placeholder="Inserisci il nome del prodotto"
+                    required
+                  />
+                  <div class="valid-feedback">Perfetto!</div>
+                  <div class="invalid-feedback">
+                    Scegli un nome per il tuo prodotto
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="product-description" class="form-label"
+                    >Descrizione del prodotto</label
+                  >
+                  <textarea
+                    class="form-control"
+                    id="product-description"
+                    aria-describedby="product-description"
+                    placeholder="Inserisci la descrizione del prodotto"
+                    rows="5"
+                    required
+                  ></textarea>
+                  <div class="valid-feedback">Perfetto!</div>
+                  <div class="invalid-feedback">
+                    Dai!! Mettici un po' di impegno
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="product-brand" class="form-label">Marca</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="product-brand"
+                    aria-describedby="product-brand"
+                    placeholder="Inserisci la marca del prodotto"
+                    required
+                  />
+                  <div class="valid-feedback">Perfetto!</div>
+                  <div class="invalid-feedback">
+                    Un prodotto senza marca che prodotto è?
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="product-image" class="form-label">Immagini</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="product-image"
+                    aria-describedby="product-image"
+                    placeholder="Inserisci un immagine del prodotto"
+                    required
+                  />
+                  <div class="valid-feedback">Perfetto!</div>
+                  <div class="invalid-feedback">Stai scherzando?</div>
+                </div>
+                <div class="mb-3">
+                  <label for="product-price" class="form-label">Prezzo</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="product-price"
+                    aria-describedby="product-price"
+                    placeholder="Inserisci il prezzo del prodotto"
+                    required
+                  />
+                  <div class="valid-feedback">Perfetto!</div>
+                  <div class="invalid-feedback">Vuoi venderlo gratis?</div>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <button
+                    id="cencel-btn"
+                    type="reset"
+                    class="btn btn-secondary"
+                  >
+                    Cancella
+                  </button>
+                  <button id="submit-btn" type="submit" class="btn btn-success">
+                    Crea Prodotto
+                  </button>
+                  <button
+                    id="delete-btn"
+                    type="button"
+                    class="btn btn-danger d-none"
+                    onclick="deleteProduct()"
+                  >
+                    Cancella Prodotto
+                  </button>
+                </div>
+              </form>
             </div>
-            <div class="mb-3">
-              <label for="product-description" class="form-label"
-                >Descrizione del prodotto</label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="product-description"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="product-brand" class="form-label">Marca</label>
-              <input type="text" class="form-control" id="product-brand" />
-            </div>
-            <div class="mb-3">
-              <label for="product-image" class="form-label">Immagini</label>
-              <input type="text" class="form-control" id="product-image" />
-            </div>
-            <div class="mb-3">
-              <label for="product-price" class="form-label">Prezzo</label>
-              <input type="text" class="form-control" id="product-price" />
-            </div>
-            <div class="d-flex justify-content-between">
-              <button id="submit-btn" type="submit" class="btn btn-success">
-                Salva Oggetto
-              </button>
-              <button
-                id="delete-btn"
-                type="button"
-                class="btn btn-danger d-none"
-                onclick="deleteProduct()"
-              >
-                Cancella Prodotto
-              </button>
-            </div>
-          </form>
+          </div>
         </div>
       </section>
-      <!-- EDIT SECTION START -->
-
-      <!-- FOOTER START -->
-      <div class="footer">
-        <div class="container">
-          <p>&copy; 2023 Andrea Di Paola</p>
-        </div>
-      </div>
-      <!-- FOOTER END -->
+      <!-- CREATE/EDIT SECTION START -->
     </main>
     <!-- MAIN END -->
     <script
@@ -131,6 +170,26 @@
       integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
       crossorigin="anonymous"
     ></script>
+    <script>
+      (() => {
+        "use strict";
+        const forms = document.querySelectorAll(".needs-validation");
+        Array.from(forms).forEach((form) => {
+          form.addEventListener(
+            "submit",
+            (event) => {
+              if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+
+              form.classList.add("was-validated");
+            },
+            false
+          );
+        });
+      })();
+    </script>
     <script src="assets/js/backoffice.js"></script>
   </body>
 </html>
