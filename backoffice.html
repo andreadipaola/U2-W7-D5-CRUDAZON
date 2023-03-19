@@ -60,6 +60,7 @@
               <h2>Backoffice</h2>
               <h5>- Crea nuovo prodotto</h5>
               <form
+                id="product-form"
                 class="needs-validation"
                 novalidate
                 onsubmit="createProduct(event)"
@@ -142,10 +143,10 @@
                 <div class="d-flex justify-content-between">
                   <button
                     id="cencel-btn"
-                    type="reset"
+                    type="button"
                     class="btn btn-secondary"
                     data-bs-toggle="modal"
-                    data-bs-target="#modal-confirm"
+                    data-bs-target="#reset-modal-confirm"
                   >
                     Cancella
                   </button>
@@ -170,14 +171,14 @@
       <!-- CREATE/EDIT SECTION START -->
     </main>
 
-    <!-- EDIT MODAL START -->
+    <!-- RESET MODAL START -->
     <div
       class="modal fade"
-      id="edit-modal-confirm"
+      id="reset-modal-confirm"
       data-bs-backdrop="static"
       data-bs-keyboard="false"
       tabindex="-1"
-      aria-labelledby="edit-modal-confirm"
+      aria-labelledby="reset-modal-confirm"
       aria-hidden="true"
     >
       <div class="modal-dialog">
@@ -191,7 +192,9 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body">Sei sicuro di voler proseguire?</div>
+          <div class="modal-body">
+            Sei sicuro di voler cancellare tutti i campi?
+          </div>
           <div class="modal-footer">
             <button
               type="button"
@@ -200,18 +203,14 @@
             >
               Chiudi
             </button>
-            <button
-              type="button"
-              class="btn btn-danger"
-              onclick="createProduct()"
-            >
+            <button type="button" class="btn btn-danger" onclick="deleteForm()">
               Conferma
             </button>
           </div>
         </div>
       </div>
     </div>
-    <!-- EDIT MODAL END -->
+    <!-- RESET MODAL END -->
 
     <!-- DELETE MODAL START -->
     <div
@@ -234,7 +233,9 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body">Sei sicuro di voler proseguire?</div>
+          <div class="modal-body">
+            Sei sicuro di voler eliminare questo prodotto?
+          </div>
           <div class="modal-footer">
             <button
               type="button"

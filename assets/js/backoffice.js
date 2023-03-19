@@ -31,8 +31,8 @@ window.onload = async () => {
       submitBtn.classList.remove("btn-primary");
       submitBtn.classList.add("btn-warning");
       submitBtn.innerText = "Modifica Prodotto";
-      submitBtn.setAttribute("data-bs-toggle", "modal");
-      submitBtn.setAttribute("data-bs-target", "#edit-modal-confirm");
+      // submitBtn.setAttribute("data-bs-toggle", "modal");
+      // submitBtn.setAttribute("data-bs-target", "#edit-modal-confirm");
     } catch (err) {
       console.log(err);
     }
@@ -99,3 +99,7 @@ const deleteProduct = async () => {
     console.log(err);
   }
 };
+
+function deleteForm() {
+  document.getElementById("product-form").reset();
+}
