@@ -80,6 +80,7 @@ const createProduct = async (event) => {
   }
   // FINE SEZIONE DEDICATA ALLA CREAZIONE DI UN PRODOTTO
 };
+
 const deleteProduct = async () => {
   try {
     const res = await fetch(URL, {
@@ -88,7 +89,9 @@ const deleteProduct = async () => {
     });
     const deletedProduct = await res.json();
 
-    console.log("Hai eliminato il prodotto " + deletedProduct.name);
+    console.log(
+      "Prodotto# " + deletedProduct.name + " eliminato correttamente!"
+    );
     window.location.assign("index.html");
   } catch (err) {
     console.log(err);

@@ -34,7 +34,7 @@ const fetchProducts = async () => {
     } = product;
 
     const productImage = document.createElement("img");
-    productImage.className = "image-fluid";
+    productImage.className = "image-fluid w-75";
     productImage.src = imageUrl;
 
     const productName = document.createElement("h1");
