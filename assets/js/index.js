@@ -66,6 +66,8 @@ const loadProducts = async () => {
     // QUI (CATCH) GESTISCO GLI EVENTUALI ERRORI GENERATI NEL TRY
   } catch (err) {
     console.log(err.message);
+  } finally {
+    document.querySelector(".spinner-border").classList.add("d-none");
   }
 };
 
