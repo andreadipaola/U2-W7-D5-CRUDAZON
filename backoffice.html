@@ -10,6 +10,7 @@
       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="assets/css/style.css" />
     <title>Crudazon</title>
   </head>
   <body>
@@ -33,7 +34,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                <a class="nav-link active fw-bold" aria-current="page" href="index.html">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="backoffice.html">Backoffice</a>
@@ -43,27 +44,36 @@
         </div>
       </nav>
       <!-- NAVBAR END -->
+
+      <!-- HERO SECTION START -->
+      <section id="backoffice-hero-section">
+      </section>
+      <!-- HERO SECTION END -->
+
     </header>
     <!-- HEADER END -->
 
     <!-- MAIN START -->
     <main>
+      <!-- HERO SECTION START -->
+
+      <!-- HERO SECTION END -->
       <!-- CREATE/EDIT SECTION START -->
-      <section class="edit-section">
+      <section id="edit-section">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-10">
-              <h2>Backoffice</h2>
+              <h2 class="mt-5 display-4">Backoffice</h2>
               <p id="backoffice-mode" class="badge bg-success p-2">Modalità Creazione</p>
-              <form id="product-form" class="needs-validation" novalidate onsubmit="createProduct(event)">
+              <form id="product-form" class="needs-validation mt-5" novalidate onsubmit="createProduct(event)">
                 <div class="mb-3">
-                  <label for="product-name" class="form-label">Nome del Prodotto</label>
+                  <label for="product-name" class="form-label fw-bold fs-5">Nome del Prodotto</label>
                   <input type="text" class="form-control" id="product-name" aria-describedby="product-name" placeholder="Inserisci il nome del prodotto" required />
                   <div class="valid-feedback">Perfetto!</div>
                   <div class="invalid-feedback">Scegli un nome per il tuo prodotto</div>
                 </div>
                 <div class="mb-3">
-                  <label for="product-description" class="form-label">Descrizione del prodotto</label>
+                  <label for="product-description" class="form-label fw-bold fs-5">Descrizione del prodotto</label>
                   <textarea
                     class="form-control"
                     id="product-description"
@@ -76,27 +86,30 @@
                   <div class="invalid-feedback">Dai!! Mettici un po' di impegno</div>
                 </div>
                 <div class="mb-3">
-                  <label for="product-brand" class="form-label">Marca</label>
+                  <label for="product-brand" class="form-label fw-bold fs-5">Marca</label>
                   <input type="text" class="form-control" id="product-brand" aria-describedby="product-brand" placeholder="Inserisci la marca del prodotto" required />
                   <div class="valid-feedback">Perfetto!</div>
                   <div class="invalid-feedback">Un prodotto senza marca che prodotto è?</div>
                 </div>
                 <div class="mb-3">
-                  <label for="product-image" class="form-label">Immagini</label>
+                  <label for="product-image" class="form-label fw-bold fs-5">Immagini</label>
                   <input type="text" class="form-control" id="product-image" aria-describedby="product-image" placeholder="Inserisci un immagine del prodotto" required />
                   <div class="valid-feedback">Perfetto!</div>
                   <div class="invalid-feedback">Stai scherzando?</div>
                 </div>
                 <div class="mb-3">
-                  <label for="product-price" class="form-label">Prezzo</label>
+                  <label for="product-price" class="form-label fw-bold fs-5">Prezzo</label>
                   <input type="number" class="form-control" id="product-price" aria-describedby="product-price" placeholder="Inserisci il prezzo del prodotto" required />
                   <div class="valid-feedback">Perfetto!</div>
                   <div class="invalid-feedback">Vuoi venderlo gratis?</div>
                 </div>
-                <div class="d-flex justify-content-between">
+                <div id="form-footer" class="d-flex justify-content-between mt-4 mb-5">
                   <button id="cencel-btn" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#reset-modal" onclick="checkForm()">Cancella Campi</button>
+                  <div id="sub-form-footer">
                   <button id="submit-btn" type="submit" class="btn btn-success">Crea Prodotto</button>
                   <button id="delete-btn" type="button" class="btn btn-danger d-none" data-bs-toggle="modal" data-bs-target="#delete-modal-confirm">Cancella Prodotto</button>
+                </div>
+                </div>
                 </div>
               </form>
               <div id="alert" class="alert alert-success my-3 d-none" role="alert">Prodotto creato con successo!!</div>

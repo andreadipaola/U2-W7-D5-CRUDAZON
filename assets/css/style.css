@@ -131,6 +131,11 @@ button {
   width: 40%;
 }
 
+@media screen and (max-width: 768px) {
+  #newsletter-section .form {
+    width: 100%;
+  }
+}
 #newsletter-section input {
   height: 3.125rem;
   padding: 0 1.25rem;
@@ -180,4 +185,29 @@ footer a {
   text-decoration: none;
   margin-bottom: 10px;
   color: #222;
+}
+
+#backoffice-hero-section {
+  height: 50vh;
+  background-image: url("../img/hero4.png");
+  background-size: cover;
+}
+
+@media screen and (max-width: 768px) {
+  #backoffice-hero-section {
+    background-position-x: 70%;
+  }
+  #form-footer {
+    flex-direction: column;
+    margin-top: 80px !important;
+  }
+  #sub-form-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: 20px;
+  }
+  #delete-btn {
+    margin-top: 20px;
+  }
 }

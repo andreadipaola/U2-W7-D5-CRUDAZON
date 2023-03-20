@@ -10,9 +10,7 @@ console.log(id);
 // const pexelsId = URLSearchParams(window.location.search).get("PexelsId");
 
 const fetchProducts = async () => {
-  const productDetailsContainer = document.getElementById(
-    "product-details-container"
-  );
+  const productDetailsContainer = document.getElementById("product-details-container");
   try {
     const res = await fetch(URL + id, {
       headers: {
@@ -22,74 +20,55 @@ const fetchProducts = async () => {
     const product = await res.json();
     console.log(product);
 
-    const {
-      brand,
-      createdAt,
-      description,
-      imageUrl,
-      name,
-      price,
-      updatedAt,
-      _id
-    } = product;
+    const { brand, createdAt, description, imageUrl, name, price, updatedAt, _id } = product;
 
     const productImage = document.createElement("img");
     productImage.className = "image-fluid w-75";
     productImage.src = imageUrl;
+
+    const productBrand = document.createElement("p");
+    productBrand.className = "mt-3 fs-3";
+    productBrand.innerText = brand;
 
     const productName = document.createElement("h1");
     productName.className = "fw-bold";
     productName.innerText = name;
 
     const productDescription = document.createElement("p");
+    productDescription.className = "mb-3";
     productDescription.innerText = description;
 
-    const productBrand = document.createElement("p");
-    productBrand.innerText = brand;
-
     const productPrice = document.createElement("p");
-    productPrice.innerText = price;
+    productPrice.className = "fs-1";
+    productPrice.innerText = `${price} €`;
 
     const serverDetails = document.createElement("h6");
-    serverDetails.className = "bg-light py-3 ps-2";
-    serverDetails.innerText = "Server details";
+    serverDetails.className = "bg-light p-3 mt-5";
+    serverDetails.innerText = "Dettagli del server";
 
     const serverDetailsList = document.createElement("ul");
-    serverDetailsList.className = "list-group list-group-flush";
+    serverDetailsList.className = "list-group list-group-flush mb-5";
 
     const firstServerDetail = document.createElement("li");
     firstServerDetail.className = "list-group-item ps-2";
-    firstServerDetail.innerHTML = `<strong>id:</strong> ${_id}`;
+    firstServerDetail.innerHTML = `<strong>ID:</strong> ${_id}`;
 
     const secondServerDetail = document.createElement("li");
     secondServerDetail.className = "list-group-item ps-2";
-    secondServerDetail.innerHTML = `<strong>createdAt:</strong> ${createdAt}</li>`;
+    secondServerDetail.innerHTML = `<strong>Prodotto Creato il:</strong> ${createdAt}</li>`;
 
     const thirdServerDetail = document.createElement("li");
     thirdServerDetail.className = "list-group-item ps-2";
-    thirdServerDetail.innerHTML = `<strong>updatedAt:</strong> ${updatedAt}`;
+    thirdServerDetail.innerHTML = `<strong>Prodotto Modificato il:</strong> ${updatedAt}`;
 
     const editBtn = document.createElement("button");
-    editBtn.className = "btn btn-warning";
+    editBtn.className = "btn btn-warning mb-5";
     editBtn.innerText = "Modifica prodotto";
     editBtn.onclick = goToEdit;
 
-    serverDetailsList.append(
-      firstServerDetail,
-      secondServerDetail,
-      thirdServerDetail
-    );
-
-    productDetailsContainer.append(
-      productImage,
-      productName,
-      productDescription,
-      productBrand,
-      productPrice,
-      serverDetails,
-      serverDetailsList,
-      editBtn
-    );
+    serverDetailsList.append(firstServerDetail, secondServerDetail, thirdServerDetail);
+    productDetailsContainer.innerHTML = "";
+    productDetailsContainer.append(productImage, productBrand, productName, productDescription, productPrice, serverDetails, serverDetailsList, editBtn);
   } catch (err) {
     console.log(err);
   }
