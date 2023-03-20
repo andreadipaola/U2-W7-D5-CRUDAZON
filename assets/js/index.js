@@ -12,8 +12,7 @@ const loadProducts = async () => {
     console.log("resonseObject: ", res);
 
     // GESTISCO DEI CODICI DI ERRORE SPECIFICI ATTRAVERSO IL THROW CHE VERRANNO POI CATTURATI DAL CATCH
-    if (res.status === 400)
-      throw new Error("Hai scrtitto male qualcosa! Controlla la tua richiesta");
+    if (res.status === 400) throw new Error("Hai scrtitto male qualcosa! Controlla la tua richiesta");
     if (res.status === 404) throw new Error("Quello che cerchi non è qui!");
     if (!res.ok) throw new Error("Non sappiamo cosa sia ma c'è un problema!");
 
@@ -45,26 +44,20 @@ const loadProducts = async () => {
       cardTitle.className = "card-title";
       cardTitle.innerText = product.name;
 
-      const cardDescription = document.createElement("p");
-      cardDescription.className = "card-description";
-      cardDescription.innerText = product.description;
+      // const cardDescription = document.createElement("p");
+      // cardDescription.className = "card-description";
+      // cardDescription.innerText = product.description;
 
       const cardPrice = document.createElement("p");
       cardPrice.className = "card-price";
       cardPrice.innerText = `${product.price} €`;
 
       const cardLink = document.createElement("a");
-      cardLink.className = "btn btn-primary";
+      cardLink.className = "card-link btn btn-primary";
       cardLink.href = "details.html?id=" + product._id;
       cardLink.innerText = "Scopri di più";
 
-      cardBody.append(
-        cardBrand,
-        cardTitle,
-        cardDescription,
-        cardPrice,
-        cardLink
-      );
+      cardBody.append(cardBrand, cardTitle, cardPrice, cardLink);
       card.append(cardImage, cardBody);
       column.append(card);
       row.append(column);
